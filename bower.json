@@ -1,0 +1,21 @@
+{
+  "name": "stocks",
+  "description": "MEAN stack stock portfolio app",
+  "main": "index.js",
+  "authors": [
+    "Allen Phelps ajpcodes@github.io"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/AJPcodes/stocks",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0"
+  }
+}
