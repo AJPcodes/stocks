@@ -1,20 +1,40 @@
 var stocksApp = angular.module('stocksApp', []);
 
-stocksApp.controller('StocksAppCtrl', function ($http) {
+stocksApp.service('lookupService', function($http, $q){
+
+  this.lookupStock = function(stocks){
+    var queryUrl = '/api/find/' + $("#lookup").val();
+    return $q function() {
+
+      $http({
+        method: 'GET',
+        url: queryUrl
+      }).then(function successCallback(response) {
+          resolve(response.data);
+      }, function errorCallback(error) {
+          reject(new Error(error));;
+      });
+
+    }
+  }; //end lookup
+}); //end service
+
+stocksApp.controller('StocksAppCtrl', function (lookupService) {
+
   var that = this;
   this.stocks = [];
 
-  $("#lookup").change(function(){
-    var queryUrl = '/api/find/' + $("#lookup").val();
+  $("#lookup").keypress(function(e){
+    var code = e.keyCode || e.which;
 
-    $http({
-      method: 'GET',
-      url: queryUrl
-    }).then(function successCallback(response) {
-       that.stocks = response.data;
-    }, function errorCallback(response) {
-    });
-
-  }); //end lookup
+    if(code === 13) {
+      ver promise = lookupService.lookupStock(that.stocks);
+      promise.then(function(data){
+        that.stocks = data;
+      })
+    }
+  })
 
 }); //end controller
+
+
