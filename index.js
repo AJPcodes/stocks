@@ -26,6 +26,7 @@ mongoose.connect(MONGODB_URL);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+
 app.locals.title = "Stocks";
 
 //app middleare for all post request (hits all routes)

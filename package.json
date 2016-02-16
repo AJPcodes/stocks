@@ -25,6 +25,7 @@
     "express": "^4.13.4",
     "jade": "^1.11.0",
     "mongoose": "^4.4.3",
-    "node-sass-middleware": "^0.9.7"
+    "node-sass-middleware": "^0.9.7",
+    "request": "^2.69.0"
   }
 }
