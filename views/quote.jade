@@ -1,0 +1,14 @@
+doctype html
+html
+  include ./includes/head.jade
+  body(ng-app="stocksApp")
+    div#main(ng-controller="StocksAppCtrl as ctrl")
+      h1#title #{title}
+      div#quoteInfo
+        ul
+          li Name: #{quoteData["Name"]}
+          li Symbol: #{quoteData.Symbol}
+          li Current Price #{quoteData.LastPrice}
+          li Daily High: #{quoteData.High} Daily Low: #{quoteData.Low}
+
+    include ./includes/scripts.jade

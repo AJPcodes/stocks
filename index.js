@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
-app.locals.title = "Stocks";
+app.locals.title = "AJP Stocks";
 
 //app middleare for all post request (hits all routes)
 app.use(bodyParser.urlencoded({ extended: false}));
