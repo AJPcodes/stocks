@@ -1,8 +1,9 @@
 doctype html
 html
   include ./includes/head.jade
-  body
-    div#main
+  body(ng-app="stocksApp")
+    div#main(ng-controller="StocksAppCtrl as ctrl")
       h1#title #{title}
-
+      input(type='text' placeholder='Search for Stocks' id="lookup")
+      p(ng-repeat="stock in ctrl.stocks") {{stock.Symbol}} {{stock.Name}}
     include ./includes/scripts.jade
