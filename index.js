@@ -21,6 +21,7 @@ const MONGODB_URL = `mongodb://${MONGODB_URL_PREFIX}${MONGODB_HOST}:${MONGODB_PO
 const routes = require('./routes/');
 const app = express();
 
+console.log(MONGODB_URL);
 mongoose.connect(MONGODB_URL);
 
 app.set('views', path.join(__dirname, 'views'));
