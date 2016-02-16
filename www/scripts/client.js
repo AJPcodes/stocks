@@ -4,7 +4,7 @@ stocksApp.service('lookupService', function($http, $q){
 
   this.lookupStock = function(stocks){
     var queryUrl = '/api/find/' + $("#lookup").val();
-    return $q function() {
+    return $q(function(resolve, reject) {
 
       $http({
         method: 'GET',
@@ -15,7 +15,7 @@ stocksApp.service('lookupService', function($http, $q){
           reject(new Error(error));;
       });
 
-    }
+    });
   }; //end lookup
 }); //end service
 
@@ -28,7 +28,7 @@ stocksApp.controller('StocksAppCtrl', function (lookupService) {
     var code = e.keyCode || e.which;
 
     if(code === 13) {
-      ver promise = lookupService.lookupStock(that.stocks);
+      var promise = lookupService.lookupStock(that.stocks);
       promise.then(function(data){
         that.stocks = data;
       })
