@@ -1,0 +1,13 @@
+doctype html
+html
+  include ./includes/head.jade
+  body(ng-app="stocksApp")
+    div#main(ng-controller="StocksAppCtrl as ctrl")
+      h1#title #{title}
+      div#purchaseInfo
+        h3 Thank you, your purchase details are below:
+        p You purchased #{quantity} share(s) of #{name} (#{symbol}) for #{cost}
+
+        a(href='/') Back to main page
+
+    include ./includes/scripts.jade

@@ -11,7 +11,6 @@ module.exports = function(lookupParam, res) {
         console.log(response.body);
         res.render('quote', {
           quoteData: JSON.parse(response.body),
-          testVar: 'testy test'
         });
   })
 };

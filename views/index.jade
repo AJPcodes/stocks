@@ -4,6 +4,19 @@ html
   body(ng-app="stocksApp")
     div#main(ng-controller="StocksAppCtrl as ctrl")
       h1#title #{title}
+      h2 Welcome
+      div(ng-hide='ctrl.portfolio')
+        p.
+          Looks like you don't have a portfolio yet.
+          Search below to get started
+      div(ng-show='ctrl.portfolio')
+        h2 Your Current Portfolio
+        div(ng-repeat="stock in ctrl.portfolio track by $index")
+          ul
+            li Name: {{stock.name}}
+            li Quantity Purchased: {{stock.quantity}}
+            li Cost: {{stock.cost}}
+
       input(type='text' placeholder='Search for Stocks' id="lookup")
       p(ng-repeat="stock in ctrl.stocks") {{stock.Symbol}} {{stock.Name}} -
         a(href=('/quote/{{stock.Symbol}}')) QUOTE
