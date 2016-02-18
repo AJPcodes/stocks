@@ -1,6 +1,6 @@
 "use strict";
 
-const Stock = require('../models/Stock');
+const Stock = require('../models/stock');
 const request = require('request');
 const mongoose = require('mongoose');
 
