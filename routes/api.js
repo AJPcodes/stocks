@@ -8,5 +8,6 @@ const api = require('../controllers/api.js');
 //no result will return an empty string
 router.get('/api/find/:query', api.query);
 router.get('/api/portfolio', api.portfolio);
+router.get('/api/quote/:quote', api.quote);
 
 module.exports = router;
