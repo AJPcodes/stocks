@@ -82,6 +82,7 @@ stocksApp.controller('StocksAppCtrl', function (lookupService) {
     var promise = lookupService.lookupPortfolio();
       promise.then(function(data){
         that.portfolio = data;
+        that.getCurrentValues();
       })
   }.bind(this);
 
@@ -94,6 +95,8 @@ stocksApp.controller('StocksAppCtrl', function (lookupService) {
         that.portfolio = data;
       })
   }.bind(this);
+
+
 
   $("#lookup").keypress(function(e){
     var code = e.keyCode || e.which;

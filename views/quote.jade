@@ -2,27 +2,45 @@ doctype html
 html
   include ./includes/head.jade
   body(ng-app="stocksApp")
-    div#main(ng-controller="StocksAppCtrl as ctrl")
+    div.center-align.container#main(ng-controller="StocksAppCtrl as ctrl")
       h1#title #{title}
-      div#quoteInfo
-        h3 Name: #{quoteData["Name"]}
-        h3(ng-init='symbol="#{quoteData.Symbol}"') Symbol: #{quoteData.Symbol}
-        h3(ng-init='listPrice="#{quoteData.LastPrice}"') Current Price #{quoteData.LastPrice}
-        h3 Daily High: #{quoteData.High} Daily Low: #{quoteData.Low}
-        button(ng-click="ctrl.toggle('#buyForm')") Order Form
+      div#quoteInfo.center-align.card
+        table
+          thead
+            tr
+              td Name
+              td Symbol
+              td Current Price
+              td Daily High / Low
+          tbody
+            tr
+              td #{quoteData["Name"]}
+              td(ng-init='symbol="#{quoteData.Symbol}"') #{quoteData.Symbol}
+              td(ng-init='listPrice="#{quoteData.LastPrice}"') #{quoteData.LastPrice}
+              td #{quoteData.High} / #{quoteData.Low}
+
+        button.btn.waves-effect.waves-light(ng-click="ctrl.toggle('#buyForm')") Order Form
+
         div#buyForm(style="display:none")
           h3 Fill out the below form to purchase shares of #{quoteData.Symbol}
           form(action="/purchase" method='POST')
-            .form-group
-              input(type='string' name="symbol" value='{{symbol}}' style="display:none")
-            .form-group
-              label Number of Shares:
-              input(type='number' name="numShares" value='0' placeholder="1" ng-model="numShares")
-              h4 Estimated Price Per Share
-              p {{listPrice}}
-              h4 Estimated purchase price in USD
-              p {{(numShares * listPrice).toFixed(2)}}
-            .form-group
-              input(type='submit', placeholder='Submit')
+            input(type='string' name="symbol" value='{{symbol}}' style="display:none")
+            table
+              thead
+                tr
+                  td Number of Shares
+                  td Price
+                  td Total (Estimated)
+              tbody
+                tr
+                  td
+                    input(type='number' name="numShares" value='0' placeholder="1" ng-model="numShares")
+                  td {{listPrice}}
+                  td {{(numShares * listPrice).toFixed(2)}}
+                  td(ng-show="numShares > 0")
+                    div.btn-floating.waves-effect.waves-light.green
+                      input(type='submit' value='Buy')
+
 
     include ./includes/scripts.jade
+

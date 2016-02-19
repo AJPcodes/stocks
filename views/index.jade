@@ -2,24 +2,42 @@ doctype html
 html
   include ./includes/head.jade
   body(ng-app="stocksApp")
-    div#main(ng-controller="StocksAppCtrl as ctrl")
-      h1#title #{title}
-      h2 Welcome
-      div(ng-hide='ctrl.portfolio')
-        p.
-          Looks like you don't have a portfolio yet.
-          Search below to get started
-      div(ng-show='ctrl.portfolio')
-        h2 Your Current Portfolio
-        button(ng-click="ctrl.getCurrentValues()") Get Current Values
-        div(ng-repeat="stock in ctrl.portfolio track by $index")
-          ul
-            li Name: {{stock.name}}
-            li Quantity Purchased: {{stock.quantity}}
-            li Cost: {{stock.cost}}
-            li(ng-show='stock.currentPrice') Current Value: {{(stock.currentPrice * stock.quantity).toFixed(2)}}
-
-      input(type='text' placeholder='Search for Stocks' id="lookup")
-      p(ng-repeat="stock in ctrl.stocks") {{stock.Symbol}} {{stock.Name}} -
-        a(href=('/quote/{{stock.Symbol}}')) QUOTE
+    div#main(ng-controller="StocksAppCtrl as ctrl" class='container')
+      .center-align.card-panel.hoverable#portfolio
+        h1#title #{title}
+        div(ng-hide='ctrl.portfolio')
+          p.
+            Looks like you don't have a portfolio yet.
+            Search below to get started
+        div(ng-show='ctrl.portfolio')
+          h3 Your Current Portfolio
+          div
+            table.highlight
+              thead
+                tr
+                  td Name
+                  td Quantity Owned
+                  td Cost
+                  td Current Value
+              tbody
+                tr(ng-repeat="stock in ctrl.portfolio track by $index")
+                  td {{stock.name}}
+                  td {{stock.quantity}}
+                  td {{stock.cost}}
+                  td(ng-show='stock.currentPrice') {{(stock.currentPrice * stock.quantity).toFixed(2)}}
+        div
+          h3 Search for new stocks
+          input(type='text' placeholder='Search for Stocks' id="lookup")
+          table
+              thead
+                tr
+                  td Stock Name
+                  td Ticker Symbol
+                  td Get Quote
+              tbody
+                tr(ng-repeat="stock in ctrl.stocks")
+                  td {{stock.Name}}
+                  td {{stock.Symbol}}
+                  td <a href='/quote/{{stock.Symbol}}''> QUOTE</a>
     include ./includes/scripts.jade
+
